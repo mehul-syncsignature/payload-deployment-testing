@@ -1,31 +1,26 @@
+// netlify/functions/api.js
 const express = require('express')
 const serverless = require('serverless-http')
-const payload = require('payload')
-
 const app = express()
 
-// Add basic error handling
-app.use((req, res, next) => {
-  try {
-    next()
-  } catch (error) {
-    console.error('Express error:', error)
-    res.status(500).json({ error: 'Internal server error' })
-  }
+// Basic routing to distribute traffic to other functions
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' })
 })
 
-// Initialize Payload with better error handling
-try {
-  payload.init({
-    secret: process.env.PAYLOAD_SECRET,
-    postgresConfig: {
-      url: process.env.DATABASE_URI,
-    },
-    express: app,
-  })
-} catch (error) {
-  console.error('Payload initialization error:', error)
-}
+// Route admin requests to admin function
+app.all('/admin*', (req, res) => {
+  res.redirect(307, '/.netlify/functions/admin' + req.url.replace('/admin', ''))
+})
 
-// Handle the API routes
+// Route media requests to media function
+app.all('/media*', (req, res) => {
+  res.redirect(307, '/.netlify/functions/media' + req.url.replace('/media', ''))
+})
+
+// Route API data requests to data function
+app.all('/api*', (req, res) => {
+  res.redirect(307, '/.netlify/functions/data' + req.url.replace('/api', ''))
+})
+
 module.exports.handler = serverless(app)

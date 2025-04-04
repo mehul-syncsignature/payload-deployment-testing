@@ -8,20 +8,27 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  external_node_modules = ["pg-native"]
   
-  # Increase memory and timeout
-  [functions.api]
-    included_files = ["node_modules/**"]
-    memory = 1024
-    timeout = 30
+  # Don't include these in the function bundle
+  external_node_modules = [
+    "pg-native",
+    "payload",
+    "express",
+    "sharp",
+    "@payloadcms/db-postgres"
+  ]
 
 [[redirects]]
   from = "/admin/*"
-  to = "/.netlify/functions/api/admin/:splat"
+  to = "/.netlify/functions/admin/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/media/*"
+  to = "/.netlify/functions/media/:splat"
   status = 200
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/data/:splat"
   status = 200
