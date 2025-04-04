@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@netlify/plugin-nextjs':
+        specifier: ^5.10.3
+        version: 5.10.3
       '@payloadcms/admin-bar':
         specifier: 3.31.0
         version: 3.31.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -95,6 +98,9 @@ importers:
       react-hook-form:
         specifier: 7.45.4
         version: 7.45.4(react@19.0.0)
+      serverless-http:
+        specifier: ^3.2.0
+        version: 3.2.0
       sharp:
         specifier: 0.32.6
         version: 0.32.6
@@ -1200,6 +1206,10 @@ packages:
 
   '@napi-rs/wasm-runtime@0.2.8':
     resolution: {integrity: sha512-OBlgKdX7gin7OIq4fadsjpg+cp2ZphvAIKucHsNfTdJiqdOmOEwQd/bHi0VwNrcw5xpBJyUw6cK/QilCqy1BSg==}
+
+  '@netlify/plugin-nextjs@5.10.3':
+    resolution: {integrity: sha512-0c4Y6Td2YcWjVaIwvJNNWqV8RJJ6uV/8DvKL2Czbp5Pp6KZ9TEIevexfzFSEZG1VgU6bgUUDAIPI2xFKN2Op8A==}
+    engines: {node: '>=18.0.0'}
 
   '@next/env@13.5.11':
     resolution: {integrity: sha512-fbb2C7HChgM7CemdCY+y3N1n8pcTKdqtQLbC7/EQtPdLvlMUT9JX/dBYl8MMZAtYG4uVMyPFHXckb68q/NRwqg==}
@@ -4175,6 +4185,10 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  serverless-http@3.2.0:
+    resolution: {integrity: sha512-QvSyZXljRLIGqwcJ4xsKJXwkZnAVkse1OajepxfjkBXV0BMvRS5R546Z4kCBI8IygDzkQY0foNPC/rnipaE9pQ==}
+    engines: {node: '>=12.0'}
+
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
     engines: {node: '>= 0.4'}
@@ -6048,6 +6062,8 @@ snapshots:
       '@emnapi/runtime': 1.4.0
       '@tybys/wasm-util': 0.9.0
     optional: true
+
+  '@netlify/plugin-nextjs@5.10.3': {}
 
   '@next/env@13.5.11': {}
 
@@ -9568,6 +9584,8 @@ snapshots:
   semver@6.3.1: {}
 
   semver@7.7.1: {}
+
+  serverless-http@3.2.0: {}
 
   set-function-length@1.2.2:
     dependencies:

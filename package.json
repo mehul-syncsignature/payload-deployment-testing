@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "build": "payload build && next build",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "dev:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && pnpm build && pnpm start",
@@ -19,7 +19,9 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.10.3",
     "@payloadcms/admin-bar": "3.31.0",
+    "@payloadcms/db-postgres": "3.31.0",
     "@payloadcms/live-preview-react": "3.31.0",
     "@payloadcms/next": "3.31.0",
     "@payloadcms/payload-cloud": "3.31.0",
@@ -47,10 +49,10 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-hook-form": "7.45.4",
+    "serverless-http": "^3.2.0",
     "sharp": "0.32.6",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "@payloadcms/db-postgres": "3.31.0"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
