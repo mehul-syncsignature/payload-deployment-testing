@@ -13,7 +13,6 @@
   external_node_modules = [
     "pg-native",
     "payload",
-    "express",
     "sharp",
     "@payloadcms/db-postgres"
   ]
