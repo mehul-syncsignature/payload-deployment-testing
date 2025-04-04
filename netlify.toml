@@ -1,25 +1,48 @@
 [build]
-  command = "pnpm install && pnpm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  command = "npm run build"
+  publish = "dist"
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+  
+  # Increase function timeout and memory
+  [functions.admin]
+    timeout = 30
+    memory = 1024
+    
+  [functions.media]
+    timeout = 30
+    memory = 1024
+    
+  [functions.api]
+    timeout = 10
+    memory = 512
 
+# Ensure all environment variables are explicitly defined
+[build.environment]
+  NODE_VERSION = "18"
+  # Add other necessary env variables, but not secrets
+
+# Configure function bundling for payload compatibility
+[functions.build]
+  external_node_modules = ["payload", "express", "pg"]
+  
+# Handle redirects properly
 [[redirects]]
   from = "/admin/*"
   to = "/.netlify/functions/admin/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/media/*"
   to = "/.netlify/functions/media/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/data/:splat"
+  to = "/.netlify/functions/api/:splat"
   status = 200
+  force = true
