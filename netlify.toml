@@ -6,7 +6,15 @@
   package = "@netlify/plugin-nextjs"
 
 [functions]
+  directory = "netlify/functions"
   node_bundler = "esbuild"
+  external_node_modules = ["pg-native"]
+  
+  # Increase memory and timeout
+  [functions.api]
+    included_files = ["node_modules/**"]
+    memory = 1024
+    timeout = 30
 
 [[redirects]]
   from = "/admin/*"
@@ -17,14 +25,3 @@
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-  external_node_modules = ["pg-native"]
-  
-  # Increase memory and timeout
-  [functions.api]
-    included_files = ["node_modules/**"]
-    memory = 1024
-    timeout = 30
