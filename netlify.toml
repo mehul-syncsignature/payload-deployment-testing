@@ -8,14 +8,6 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  
-  # Don't include these in the function bundle
-  external_node_modules = [
-    "pg-native",
-    "payload",
-    "sharp",
-    "@payloadcms/db-postgres"
-  ]
 
 [[redirects]]
   from = "/admin/*"
